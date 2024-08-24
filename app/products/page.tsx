@@ -388,8 +388,9 @@ const ProductManagementPage: React.FC = () => {
                     <DialogTitle>Delete Product</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Are you sure you want to delete the product "{selectedProduct.name}"? This action cannot be undone.
+                            {`Are you sure you want to delete the product "${selectedProduct.name}"? This action cannot be undone.`}
                         </DialogContentText>
+
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleCloseDelete} color="secondary">

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
     TextField,
     Button,
@@ -13,6 +13,7 @@ import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 import { app } from '../lib/firebaseConfig';
 import { addProduct } from '../utils/productUtils';
 import { Product } from '../types';
+import Image from 'next/image';
 
 const AddProductForm: React.FC = () => {
     const [product, setProduct] = useState<Omit<Product, 'id' | 'imageUrl'>>({
@@ -33,7 +34,7 @@ const AddProductForm: React.FC = () => {
     const [successMessage, setSuccessMessage] = useState<string>('');
 
     const auth = getAuth(app);
-    const allowedEmails = ['dev.mhany@gmail.com', 'eyadwael444@gmail.com'];
+    const allowedEmails = useMemo(() => ['dev.mhany@gmail.com', 'eyadwael444@gmail.com'], []);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -42,7 +43,7 @@ const AddProductForm: React.FC = () => {
         });
 
         return () => unsubscribe();
-    }, [auth]);
+    }, [auth, allowedEmails]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -210,7 +211,7 @@ const AddProductForm: React.FC = () => {
             />
             {imagePreview && (
                 <Box sx={{ mt: 2 }}>
-                    <img src={imagePreview} alt="Product Preview" style={{ maxWidth: '100%', maxHeight: 200 }} />
+                    <Image src={imagePreview} alt="Product Preview" style={{ maxWidth: '100%', maxHeight: 200 }} />
                 </Box>
             )}
             <Button variant="contained" component="label" sx={{ mt: 2 }}>
