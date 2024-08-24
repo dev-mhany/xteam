@@ -8,7 +8,7 @@ export default function Home() {
     const urls: Record<string, string> = {
       facebook: 'https://www.facebook.com/your-page-url',
       instagram: 'https://www.instagram.com/your-page-url',
-      whatsapp: 'https://wa.me/your-number',
+      whatsapp: 'https://wa.me/+201012821111',
     };
     window.open(urls[platform], '_blank');
   };
@@ -20,6 +20,9 @@ export default function Home() {
       </Typography>
       <Typography variant="h5" gutterBottom>
         بنقدملك أحدث ماكينات CNC ليزر وآلات الكاتر لتصميم اسكرينات وكفرات موبايل مخصصة. وكمان بنوفر كل الخامات اللي هتحتاجها عشان تطلع منتجات بجودة عالية وباحترافية.
+      </Typography>
+      <Typography variant="h3" gutterBottom sx={{ mt: 5 }}>
+        Coming Soon
       </Typography>
       <Box sx={{ mt: 4 }}>
         <Button

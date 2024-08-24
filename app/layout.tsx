@@ -4,39 +4,26 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Head from 'next/head';
 
-export const metadata = {
-  title: 'XTeam | Custom Mobile Skins & Screen Protectors',
-  description: 'Discover the latest CNC laser machines and materials for creating professional mobile skins and screen protectors.',
-  openGraph: {
-    title: 'XTeam | Custom Mobile Skins & Screen Protectors',
-    description: 'Discover the latest CNC laser machines and materials for creating professional mobile skins and screen protectors.',
-    url: 'https://your-website-url.com',
-    type: 'website',
-    images: [
-      {
-        url: '/xteam/public/c140feb9-6386-477c-b847-722c3899dd60_0760717e-7772-4c8c-b481-89300505848e.webp',
-        width: 800,
-        height: 600,
-        alt: 'XTeam CNC Laser Machines',
-      },
-    ],
-  },
-};
-
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <Head>
+        <title>XTeam | Custom Mobile Skins & Screen Protectors</title>
+        <meta name="description" content="Discover the latest CNC laser machines and materials for creating professional mobile skins and screen protectors." />
+        <meta property="og:url" content="https://xteam-eta.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="XTeam | Custom Mobile Skins & Screen Protectors" />
+        <meta property="og:description" content="Discover the latest CNC laser machines and materials for creating professional mobile skins and screen protectors." />
+        <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/2eedf9ec-0c78-4e71-ad7c-38990283a006.png?token=eaqRJg1PsrLQrMKe_-PwM886_zG1DuYofGuyZrY0j7o&height=500&width=500&expires=33260498090" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="xteam-eta.vercel.app" />
+        <meta property="twitter:url" content="https://xteam-eta.vercel.app/" />
+        <meta name="twitter:title" content="XTeam | Custom Mobile Skins & Screen Protectors" />
+        <meta name="twitter:description" content="Discover the latest CNC laser machines and materials for creating professional mobile skins and screen protectors." />
+        <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/2eedf9ec-0c78-4e71-ad7c-38990283a006.png?token=eaqRJg1PsrLQrMKe_-PwM886_zG1DuYofGuyZrY0j7o&height=500&width=500&expires=33260498090" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="UTF-8" />
-        <meta name="description" content={metadata.description} />
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
-        <meta property="og:image" content={metadata.openGraph.images[0].url} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:type" content={metadata.openGraph.type} />
         <link rel="icon" href="/favicon.ico" />
-        <title>{metadata.title}</title>
       </Head>
       <body>
         <CssBaseline />

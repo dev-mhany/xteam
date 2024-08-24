@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <Box sx={{ py: 3, textAlign: 'center', mt: 'auto', backgroundColor: '#f5f5f5' }}>
             <Typography variant="body2">
-                © 2024 XTeam. All rights reserved. | <Link href="mailto:your-email@example.com">Contact us</Link>
+                © 2024 XTeam. All rights reserved. | <Link href="xteam760@gmail.com">Contact us</Link>
             </Typography>
             <Typography variant="body2" color="textSecondary">
                 Follow us on{' '}
@@ -17,7 +17,7 @@ const Footer = () => {
                     Instagram
                 </Link>
                 , and{' '}
-                <Link href="https://wa.me/your-number" target="_blank" rel="noopener">
+                <Link href="https://wa.me/+201012821111" target="_blank" rel="noopener">
                     WhatsApp
                 </Link>
             </Typography>
