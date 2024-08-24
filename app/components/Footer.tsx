@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <Box sx={{ py: 3, textAlign: 'center', mt: 'auto', backgroundColor: '#f5f5f5' }}>
             <Typography variant="body2">
-                © 2024 XTeam. All rights reserved. | <Link href="xteam760@gmail.com">Contact us</Link>
+                © 2024 XTeam. All rights reserved. | <Link href="eyadwael444@gmail.com">Contact us</Link>
             </Typography>
             <Typography variant="body2" color="textSecondary">
                 Follow us on{' '}

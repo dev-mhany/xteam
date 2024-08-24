@@ -4,13 +4,12 @@ import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBbZ4HfDIs9jO3Myw6nIkz910mIcpjOuz8',
-  authDomain: 'xteam-2ca4f.firebaseapp.com',
-  projectId: 'xteam-2ca4f',
-  storageBucket: 'xteam-2ca4f.appspot.com',
-  messagingSenderId: '1045437453296',
-  appId: '1:1045437453296:web:0af6f5c194ac426af38335',
-  measurementId: 'G-G14TJ0EM88'
+  apiKey: 'AIzaSyDRu0bclPW_KDrl29LlYEYAkvi5A_GPymc',
+  authDomain: 'xteam-3c6eb.firebaseapp.com',
+  projectId: 'xteam-3c6eb',
+  storageBucket: 'xteam-3c6eb.appspot.com',
+  messagingSenderId: '222003579393',
+  appId: '1:222003579393:web:fa5e20b78c270327c64e00'
 }
 
 const app = initializeApp(firebaseConfig)

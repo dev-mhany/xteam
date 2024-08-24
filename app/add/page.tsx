@@ -1,13 +1,21 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, Typography, MenuItem } from '@mui/material';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {
+    TextField,
+    Button,
+    Box,
+    Typography,
+    MenuItem,
+    Tooltip
+} from '@mui/material';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 import { app } from '../lib/firebaseConfig';
+import { addProduct } from '../utils/productUtils';
+import { Product } from '../types';
 
 const AddProductForm: React.FC = () => {
-    const [product, setProduct] = useState({
+    const [product, setProduct] = useState<Omit<Product, 'id' | 'imageUrl'>>({
         name: '',
         price: '',
         category: '',
@@ -24,39 +32,31 @@ const AddProductForm: React.FC = () => {
     const [authorized, setAuthorized] = useState(false);
     const [successMessage, setSuccessMessage] = useState<string>('');
 
-    const db = getFirestore(app);
-    const storage = getStorage(app);
     const auth = getAuth(app);
-
-    const allowedEmails = ['dev.mhany@gmail.com', 'allowedemail2@example.com'];
+    const allowedEmails = ['dev.mhany@gmail.com', 'eyadwael444@gmail.com'];
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser) {
-                setUser(currentUser);
-                if (allowedEmails.includes(currentUser.email || '')) {
-                    setAuthorized(true);
-                } else {
-                    setAuthorized(false);
-                }
-            } else {
-                setUser(null);
-                setAuthorized(false);
-            }
+            setUser(currentUser);
+            setAuthorized(currentUser ? allowedEmails.includes(currentUser.email ?? '') : false);
         });
 
         return () => unsubscribe();
     }, [auth]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setProduct({ ...product, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setProduct(prev => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             setImage(file);
-            setImagePreview(URL.createObjectURL(file)); // Set the image preview URL
+            setImagePreview(URL.createObjectURL(file));
         }
     };
 
@@ -74,23 +74,9 @@ const AddProductForm: React.FC = () => {
                 return;
             }
 
-            // Upload image to Firebase Storage
-            const storageRef = ref(storage, `products/${image.name}`);
-            await uploadBytes(storageRef, image);
-            const imageUrl = await getDownloadURL(storageRef);
+            const tagsArray = Array.isArray(product.tags) ? product.tags : product.tags.split(',').map(tag => tag.trim());
+            await addProduct({ ...product, tags: tagsArray }, image);
 
-            console.log('Image uploaded successfully:', imageUrl); // Log the image URL
-
-            // Save product data to Firestore
-            await addDoc(collection(db, 'products'), {
-                ...product,
-                imageUrl,
-                createdAt: new Date(),
-            });
-
-            console.log('Product added successfully:', product); // Log the product data
-
-            // Reset the form
             setProduct({
                 name: '',
                 price: '',
@@ -104,8 +90,7 @@ const AddProductForm: React.FC = () => {
             });
             setImage(null);
             setImagePreview(null);
-            setSuccessMessage('Product saved successfully!'); // Set success message
-
+            setSuccessMessage('Product saved successfully!');
         } catch (error) {
             console.error('Error adding product: ', error);
             alert('Failed to add product.');
@@ -179,14 +164,16 @@ const AddProductForm: React.FC = () => {
                 <MenuItem value="new">New</MenuItem>
                 <MenuItem value="refurbished">Refurbished</MenuItem>
             </TextField>
-            <TextField
-                label="Tags"
-                name="tags"
-                value={product.tags}
-                onChange={handleChange}
-                fullWidth
-                margin="normal"
-            />
+            <Tooltip title="Enter tags separated by commas">
+                <TextField
+                    label="Tags"
+                    name="tags"
+                    value={product.tags}
+                    onChange={handleChange}
+                    fullWidth
+                    margin="normal"
+                />
+            </Tooltip>
             <TextField
                 label="Description"
                 name="description"
