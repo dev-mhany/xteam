@@ -9,11 +9,11 @@ const Footer = () => {
             </Typography>
             <Typography variant="body2" color="textSecondary">
                 Follow us on{' '}
-                <Link href="https://www.facebook.com/your-page-url" target="_blank" rel="noopener">
+                <Link href="https://www.facebook.com/0.XTeam.0/" target="_blank" rel="noopener">
                     Facebook
                 </Link>
                 ,{' '}
-                <Link href="https://www.instagram.com/your-page-url" target="_blank" rel="noopener">
+                <Link href="https://www.instagram.com/0_xteam_0/" target="_blank" rel="noopener">
                     Instagram
                 </Link>
                 , and{' '}

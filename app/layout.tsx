@@ -3,8 +3,9 @@ import { CssBaseline, Container } from '@mui/material';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Head from 'next/head';
+import { AuthProvider } from './context/AuthContext';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <Head>
@@ -26,12 +27,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
-        <CssBaseline />
-        <Navbar />
-        <Container maxWidth="lg" sx={{ minHeight: '80vh' }}>
-          {children}
-        </Container>
-        <Footer />
+        <AuthProvider>
+          <CssBaseline />
+          <Navbar />
+          <Container sx={{ width: '100vw', height: 'auto', overflow: 'hidden' }}>
+            {children}
+          </Container>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

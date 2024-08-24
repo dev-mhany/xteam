@@ -6,15 +6,15 @@ import { Facebook, Instagram, WhatsApp } from '@mui/icons-material';
 export default function Home() {
   const handleClick = (platform: string) => {
     const urls: Record<string, string> = {
-      facebook: 'https://www.facebook.com/your-page-url',
-      instagram: 'https://www.instagram.com/your-page-url',
+      facebook: 'https://www.facebook.com/0.XTeam.0/',
+      instagram: 'https://www.instagram.com/0_xteam_0/',
       whatsapp: 'https://wa.me/+201012821111',
     };
     window.open(urls[platform], '_blank');
   };
 
   return (
-    <Box sx={{ textAlign: 'center', mt: 10 }}>
+    <Box sx={{ width: '100%', textAlign: 'center', mt: 10 }}>
       <Typography variant="h2" gutterBottom>
         مرحباً بكم في XTeam!
       </Typography>
